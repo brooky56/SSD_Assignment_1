@@ -1,10 +1,10 @@
-import time
 import random
 from cmath import sqrt as csqrt
 
 from task1 import best_decorator
 from task2 import best_decorator_v2
 from task3 import BestDecor
+from task4 import best_decorator_v4, BestDecor4
 
 def pascal_triangle(num=5):
     """
@@ -99,6 +99,13 @@ def test_case_task_3():
         rank_order += 1
         print('{0:15} {1:} {2:15}s'.format(func.__name__, rank_order, round(func_time,8)))
 
+def func_error():
+    raise Exception('Python!')
+
+def test_case_task_4():
+    a = best_decorator_v4(func_error)
+    a()
+
 if __name__ == "__main__":
     # Test case for Task #1
     test_case_task_1()
@@ -106,4 +113,5 @@ if __name__ == "__main__":
     test_case_task_2()
     # Test case for Task #3
     test_case_task_3()
-    
+    # Test case for Task #4
+    test_case_task_4()
