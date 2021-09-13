@@ -28,7 +28,7 @@ def double_list(list_num=[1, 2, 3, 4, 5]):
     """
     print(list(map(lambda elem: elem * 2 , list_num)))
 
-def quad_solver(a=1,b=4, c=2):
+def quad_solver(a=1,b=4,c=2):
     """
     The function solve quad equation also with complex space
     :param a: arg in x^2
@@ -56,7 +56,7 @@ def func():
     n =  random.randint(10,751)
     for i in range(n):
         result += (i**2)
-        
+      
 def funx(n=2, m=5):
     print("I am ready to do serious stuff")
     max_val = float('-inf')
@@ -67,29 +67,43 @@ def funx(n=2, m=5):
             max_val = i
 
 def test_case_task_1():
-    pass
+    a = best_decorator(funx)
+    b = best_decorator(func)
+
+    a()
+    b()
+    a()
 
 def test_case_task_2():
-    pass
+    pt = best_decorator_v2(pascal_triangle)
+    qs = best_decorator_v2(quad_solver)
+
+    pt(5)
+    qs()
 
 def test_case_task_3():
     # list of executable functions
     func2exec = [pascal_triangle, quad_solver, double_list, find_polin]
     func2time = {}
     for i in range(len(func2exec)):
-        start_time = time.time()
-        BestDecor(func2exec[i])()
-        executed_time = time.time() - start_time
-        func2time.update({func2exec[i] : executed_time})
+        # instance
+        func = BestDecor(func2exec[i])
+        #execute
+        func()
+        func2time.update({func2exec[i] : func.executed_time})
     # sort by time execution the results of function
     sorted_exec = sorted(func2time.items(), key = lambda func_time: func_time[1])
-    
     print("{0:15} {1:} {2:15}".format("Function", "|RANK", "|TIME ELAPSED"))
     rank_order = 0
     for func, func_time in (sorted_exec):
         rank_order += 1
-        print('{0:15} {1:} {2:15}'.format(func.__name__, rank_order, round(func_time,4)))
+        print('{0:15} {1:} {2:15}s'.format(func.__name__, rank_order, round(func_time,8)))
 
 if __name__ == "__main__":
+    # Test case for Task #1
+    test_case_task_1()
+    # Test case for Task #2
+    test_case_task_2()
     # Test case for Task #3
     test_case_task_3()
+    

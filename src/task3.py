@@ -8,6 +8,7 @@ class BestDecor:
     def __init__(self, func):
         self.calls = 0 # number of function calls
         self.func = func # function itself
+        self.executed_time = 0
         
     def __call__(self, *args, **kargs):
         self.calls += 1
@@ -16,6 +17,7 @@ class BestDecor:
         with redirect_stdout(f):
             self.func(*args, **kargs)
         executed_time = time.time() - start_time
+        self.executed_time = executed_time
         # Put dumps into one file
         # if each function need to be in different files
         # with open(f"stdout_{self.func.__name__}.txt", "w+") as f:

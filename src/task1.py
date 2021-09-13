@@ -15,10 +15,10 @@ def best_decorator(func):
         """
         wrapper.counter +=1
         start_time = time.time()
-        with open('stdout.txt', 'w') as f:
+        with open('stdout.txt', 'a') as f:
             with redirect_stdout(f):
                 func(*args, **kargs)
         executed_time = time.time() - start_time
-        print("{0} call {1} executed in {2} sec".format(func.__name__ ,wrapper.counter, executed_time))
+        print("{0} call {1} executed in {2} sec".format(func.__name__ ,wrapper.counter, round(executed_time, 4)))
     wrapper.counter = 0
     return wrapper
