@@ -1,11 +1,12 @@
+import time
 import random
-from task1 import best_decorator
-from task2 import best_decorator_v2
-from math import sqrt
 from cmath import sqrt as csqrt
 
-@best_decorator_v2
-def pascal_triangle(num):
+from task1 import best_decorator
+from task2 import best_decorator_v2
+from task3 import BestDecor
+
+def pascal_triangle(num=5):
     """
     Pacal triangle approach with O(N^2) approach with O(1) extra space
     (More interesting solutions here: https://www.codesdope.com/blog/article/pascal-triangle-algorithm/)
@@ -19,16 +20,14 @@ def pascal_triangle(num):
             column = int(column * (n - k) / k)  
         print("") 
 
-@best_decorator
-def double_list(list):
+def double_list(list_num=[1, 2, 3, 4, 5]):
     """
     Function including lambda for double each element in the list
     :param list: list for double elemt
     :return: Doubled list
     """
-    return list(map(lambda elem: elem * 2 , list))
+    print(list(map(lambda elem: elem * 2 , list_num)))
 
-@best_decorator
 def quad_solver(a=1,b=4, c=2):
     """
     The function solve quad equation also with complex space
@@ -43,16 +42,14 @@ def quad_solver(a=1,b=4, c=2):
     root_2 = (-b + csqrt(dis))/(2 * a)
     print("Solution for equation: ({0})x^2+({1})x+({2})\nRoots:\n{3}\n{4}".format(a, b, c, root_1, root_2))
 
-@best_decorator
 def find_polin(str_list=["php", "w3wp", "Python", "abcd", "Java"]):
     """
     Function find and return list of polindroms from the given string list with words
     :param list: string list with words
     :return: list with polindromes
     """
-    return list(filter(lambda elem: (elem == "".join(reversed(elem))), str_list))
+    print(list(filter(lambda elem: (elem == "".join(reversed(elem))), str_list)))
 
-@best_decorator
 def func():
     print("I am ready to Start")
     result = 0
@@ -60,7 +57,6 @@ def func():
     for i in range(n):
         result += (i**2)
         
-@best_decorator
 def funx(n=2, m=5):
     print("I am ready to do serious stuff")
     max_val = float('-inf')
@@ -70,5 +66,30 @@ def funx(n=2, m=5):
         if i > max_val: 
             max_val = i
 
-if __name__ == "__main__":
+def test_case_task_1():
     pass
+
+def test_case_task_2():
+    pass
+
+def test_case_task_3():
+    # list of executable functions
+    func2exec = [pascal_triangle, quad_solver, double_list, find_polin]
+    func2time = {}
+    for i in range(len(func2exec)):
+        start_time = time.time()
+        BestDecor(func2exec[i])()
+        executed_time = time.time() - start_time
+        func2time.update({func2exec[i] : executed_time})
+    # sort by time execution the results of function
+    sorted_exec = sorted(func2time.items(), key = lambda func_time: func_time[1])
+    
+    print("{0:15} {1:} {2:15}".format("Function", "|RANK", "|TIME ELAPSED"))
+    rank_order = 0
+    for func, func_time in (sorted_exec):
+        rank_order += 1
+        print('{0:15} {1:} {2:15}'.format(func.__name__, rank_order, round(func_time,4)))
+
+if __name__ == "__main__":
+    # Test case for Task #3
+    test_case_task_3()

@@ -1,5 +1,141 @@
-1 
+pascal_triangle call 1 executed in 0.0001 sec
+
+            Name: pascal_triangle
+
+            Type: <class 'function'>
+
+            Sign: (num=5)
+
+            Args: positional ()
+
+                  key=worded {}
+            Doc: 
+    Pacal triangle approach with O(N^2) approach with O(1) extra space
+    (More interesting solutions here: https://www.codesdope.com/blog/article/pascal-triangle-algorithm/)
+    :param num: amout of pascal triangle lines (depth)  
+    
+
+            Source: def pascal_triangle(num=5):
+    """
+    Pacal triangle approach with O(N^2) approach with O(1) extra space
+    (More interesting solutions here: https://www.codesdope.com/blog/article/pascal-triangle-algorithm/)
+    :param num: amout of pascal triangle lines (depth)  
+    """
+    for n in range(1, num + 1):  
+        column = 1   
+        for k in range(1, n + 1):   
+            # value of first column is always 1  
+            print(column, end = " ")  
+            column = int(column * (n - k) / k)  
+        print("") 
+
+
+            Output: 1 
 1 1 
 1 2 1 
 1 3 3 1 
 1 4 6 4 1 
+
+
+            --------------------
+            quad_solver call 1 executed in 0.0001 sec
+
+            Name: quad_solver
+
+            Type: <class 'function'>
+
+            Sign: (a=1, b=4, c=2)
+
+            Args: positional ()
+
+                  key=worded {}
+            Doc: 
+    The function solve quad equation also with complex space
+    :param a: arg in x^2
+    :param b: arg in x
+    :param c: free component
+    
+
+            Source: def quad_solver(a=1,b=4, c=2):
+    """
+    The function solve quad equation also with complex space
+    :param a: arg in x^2
+    :param b: arg in x
+    :param c: free component
+    """
+    # calculating  the discriminant
+    dis = (b**2) - (4 * a*c)
+    # find two results
+    root_1 = (-b-csqrt(dis))/(2 * a)
+    root_2 = (-b + csqrt(dis))/(2 * a)
+    print("Solution for equation: ({0})x^2+({1})x+({2})\nRoots:\n{3}\n{4}".format(a, b, c, root_1, root_2))
+
+
+            Output: Solution for equation: (1)x^2+(4)x+(2)
+Roots:
+(-3.414213562373095+0j)
+(-0.5857864376269049+0j)
+
+
+            --------------------
+            double_list call 1 executed in 0.0 sec
+
+            Name: double_list
+
+            Type: <class 'function'>
+
+            Sign: (list_num=[1, 2, 3, 4, 5])
+
+            Args: positional ()
+
+                  key=worded {}
+            Doc: 
+    Function including lambda for double each element in the list
+    :param list: list for double elemt
+    :return: Doubled list
+    
+
+            Source: def double_list(list_num=[1, 2, 3, 4, 5]):
+    """
+    Function including lambda for double each element in the list
+    :param list: list for double elemt
+    :return: Doubled list
+    """
+    print(list(map(lambda elem: elem * 2 , list_num)))
+
+
+            Output: [2, 4, 6, 8, 10]
+
+
+            --------------------
+            find_polin call 1 executed in 0.0 sec
+
+            Name: find_polin
+
+            Type: <class 'function'>
+
+            Sign: (str_list=['php', 'w3wp', 'Python', 'abcd', 'Java'])
+
+            Args: positional ()
+
+                  key=worded {}
+            Doc: 
+    Function find and return list of polindroms from the given string list with words
+    :param list: string list with words
+    :return: list with polindromes
+    
+
+            Source: def find_polin(str_list=["php", "w3wp", "Python", "abcd", "Java"]):
+    """
+    Function find and return list of polindroms from the given string list with words
+    :param list: string list with words
+    :return: list with polindromes
+    """
+    print(list(filter(lambda elem: (elem == "".join(reversed(elem))), str_list)))
+
+
+            Output: ['php']
+
+
+            --------------------
+            
